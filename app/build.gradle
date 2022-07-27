@@ -30,7 +30,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
-            applicationIdSuffix ".debug"
             debuggable true
         }
     }
@@ -54,9 +53,8 @@ dependencies {
 publishing {
     publications {
         release(MavenPublication) {
-
-            groupId = 'com.github.functionland'
-            artifactId "$project.name"
+            groupId = 'com.github.farhoud'
+            artifactId "fx.android.fula"
             version = '0.5.0'
             afterEvaluate {
                 from components.debug
