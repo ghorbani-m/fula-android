@@ -8,9 +8,8 @@ android {
     compileSdk 31
 
     publishing {
-        multipleVariants {
-            allVariants()
-            withJavadocs()
+        singleVariant('debug') {
+            withSourcesJar()
         }
     }
 
@@ -27,8 +26,12 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            applicationIdSuffix ".debug"
+            debuggable true
         }
     }
     compileOptions {
@@ -51,10 +54,13 @@ dependencies {
 publishing {
     publications {
         release(MavenPublication) {
+
             groupId = 'com.github.functionland'
             artifactId "$project.name"
             version = '0.5.0'
-
+            afterEvaluate {
+                from components.debug
+            }
         }
     }
 }
