@@ -1,12 +1,13 @@
 package fx.android.fula;
 
 import mobile.Fula;
+import mobile.Mobile;
 
 public class FulaAPI {
     private final Fula FulaClient;
 
-    public FulaAPI(String repo) {
-        FulaClient = new Fula(repo);
+    public FulaAPI(String repo) throws Exception {
+        FulaClient = Mobile.newFula(repo);
     }
 
     public void addBox(String ma) throws Exception {
